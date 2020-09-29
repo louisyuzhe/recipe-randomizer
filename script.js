@@ -4,6 +4,10 @@ videoContainer = document.getElementById('videoContainer');
 foodImage = document.getElementById('foodImage');
 
 randomRecipeBtn.addEventListener('click', () => {
+	var els = document.querySelectorAll("h2, h3");
+	for (var i=0; i < els.length; i++) {
+	    els[i].setAttribute('style','visibility:visible');
+	}
 	fetch('https://www.themealdb.com/api/json/v1/1/random.php')
 		.then(res => res.json())
 		.then(res => {
