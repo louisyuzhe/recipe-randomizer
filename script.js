@@ -28,8 +28,7 @@ const createMeal = (meal) => {
   }
   var ifrm = document.createElement('iframe');
   ifrm.setAttribute("src", `https://www.youtube.com/embed/${meal.strYoutube.slice(-11)}`);
-  ifrm.setAttribute('width', '853');
-  ifrm.setAttribute('height', '505');
+	ifrm.allowFullscreen = true;
   videoContainer.appendChild(ifrm)
 
 	document.getElementById('directions').innerHTML = `${meal.strInstructions}`;
