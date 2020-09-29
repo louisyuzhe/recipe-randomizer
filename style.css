@@ -1,0 +1,45 @@
+html {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1.125em; /* 18px / 16px = 1.125em */
+  padding: 1em;
+  text-align: center;
+}
+p {
+  padding-right: 1em;
+  text-align: justify;
+}
+section {
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   grid-template-rows: 1fr;
+   justify-content: center;
+   margin-bottom: 3em;
+ }
+ul {
+    list-style-position: inside;
+    display: inline-block;
+}
+li {
+  text-align: left;
+}
+h2 {
+  font-size: 3em; /* 54px / 18px = 3em */
+}
+h3 {
+  font-size: 2em; /* 36px / 18px = 2em */
+}
+footer {
+  padding-top: 3em;
+}
+strong {
+  font-weight: lighter;
+}
+button {
+  font-size: 2em;
+}
+footer p {
+  text-align: center;
+}
+#recipeVisual h2 {
+  grid-column: 1 / 4; /* Span h2 over all columns */
+}
