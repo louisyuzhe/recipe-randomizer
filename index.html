@@ -10,7 +10,7 @@
   <body>
     <header id="cover-page">
       <h1>Random Recipe Generator</h1>
-      <button type="button" class="button-primary" id="randomRecipeBtn">Generate Recipe 🍔</button>
+      <button type="button" class="button-primary" id="randomRecipeBtn">Generate Recipe 🍽️</button>
     </header>
     <main>
       <section id="recipeVisual">
@@ -18,22 +18,28 @@
         <article id="imageContainer">
           <img id="foodImage">
         </article>
-        <article id="videoContainer">
+        <article>
+          <article id="videoContainer">
+
+          </article>
+          <h3>Area: <strong id="recipeArea"></strong></h3>
+          <h3>Category: <strong id="recipeCategory"></strong></h3>
         </article>
       </section>
       <section id="recipeDetail">
-        <h2 id="recipeArea">Area: </h2>
-        <h2 id="recipeCategory">Category: </h2>
         <article id="ingredientContainer">
           <h3>Ingredients</h3>
+          <ul id="ingredients"></ul>
         </article>
         <article id="directionContainer">
           <h3>Directions</h3>
+          <p id="directions"></p>
         </article>
       </section>
     </main>
     <footer>
       <p>Site content and design © Yuzhe Lim.</p>
+      <p>Recipes from<a href="https://www.themealdb.com/">TheMealDB</a></p>
     </footer>
     <script src="script.js"></script>
   </body>
