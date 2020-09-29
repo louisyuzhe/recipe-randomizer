@@ -24,9 +24,11 @@ li {
 }
 h2 {
   font-size: 3em; /* 54px / 18px = 3em */
+  visibility:hidden;
 }
 h3 {
   font-size: 2em; /* 36px / 18px = 2em */
+  visibility:hidden;
 }
 footer {
   padding-top: 3em;
