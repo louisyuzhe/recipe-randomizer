@@ -2,8 +2,6 @@ const randomRecipeBtn = document.getElementById('randomRecipeBtn');
 imageContainer = document.getElementById('imageContainer');
 videoContainer = document.getElementById('videoContainer');
 foodImage = document.getElementById('foodImage');
-ingredientContainer = document.getElementById('ingredientContainer');
-directionContainer = document.getElementById('directionContainer');
 
 randomRecipeBtn.addEventListener('click', () => {
 	fetch('https://www.themealdb.com/api/json/v1/1/random.php')
@@ -20,27 +18,22 @@ const createMeal = (meal) => {
   foodImage.setAttribute("src", `${meal.strMealThumb}`);
   foodImage.setAttribute("alt", "Image of the food");
 
+
   while (videoContainer.hasChildNodes()) {
     videoContainer.removeChild(videoContainer.lastChild);
   }
   var ifrm = document.createElement('iframe');
   ifrm.setAttribute("src", `https://www.youtube.com/embed/${meal.strYoutube.slice(-11)}`);
-  ifrm.setAttribute('width', '420');
-  ifrm.setAttribute('height', '315');
+  ifrm.setAttribute('width', '853');
+  ifrm.setAttribute('height', '505');
   videoContainer.appendChild(ifrm)
 
-  while (directionContainer.hasChildNodes()) {
-    directionContainer.removeChild(directionContainer.lastChild);
-  }
-  var instruction = document.createElement('p');
-  var node = document.createTextNode(`${meal.strInstructions}`);
-  instruction.appendChild(node);
-  directionContainer.appendChild(node);
+	document.getElementById('directions').innerHTML = `${meal.strInstructions}`;
 
-  while (ingredientContainer.hasChildNodes()) {
-    ingredientContainer.removeChild(ingredientContainer.lastChild);
-  }
-  ul = document.createElement('ul');
+  ul = document.getElementById('ingredients');
+	while (ul.hasChildNodes()) {
+		ul.removeChild(ul.lastChild);
+	}
   // Get all ingredients from the object. Up to 30
   for(let i=1; i<=30; i++) {
     if(meal[`strIngredient${i}`]) {
@@ -53,8 +46,7 @@ const createMeal = (meal) => {
       break;
     }
   }
-  ingredientContainer.appendChild(ul);
 
-  document.getElementById('recipeArea').innerHTML = "Area: "+ `${meal.strArea}`;
-  document.getElementById('recipeCategory').innerHTML = "Category: "+ `${meal.strCategory}`;
+  document.getElementById('recipeArea').innerHTML = `${meal.strArea}`;
+  document.getElementById('recipeCategory').innerHTML = `${meal.strCategory}`;
 }
