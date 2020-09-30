@@ -3,7 +3,7 @@ imageContainer = document.getElementById('imageContainer');
 videoContainer = document.getElementById('videoContainer');
 foodImage = document.getElementById('foodImage');
 
-randomRecipeBtn.addEventListener('click', () => {
+randomRecipeBtn.addEventListener('click', (event) => {
 	var els = document.querySelectorAll("h2, h3");
 	for (var i=0; i < els.length; i++) {
 	    els[i].setAttribute('style','visibility:visible');
@@ -11,12 +11,12 @@ randomRecipeBtn.addEventListener('click', () => {
 	fetch('https://www.themealdb.com/api/json/v1/1/random.php')
 		.then(res => res.json())
 		.then(res => {
-		createMeal(res.meals[0]);
+		createMeal(res.meals[0], event);
 	});
 });
 
-const createMeal = (meal) => {
-
+const createMeal = (meal, event) => {
+	recipeID=`${meal.idMeal}`;
   document.getElementById('recipeName').innerHTML = `${meal.strMeal}`;
 
   foodImage.setAttribute("src", `${meal.strMealThumb}`);
@@ -52,4 +52,23 @@ const createMeal = (meal) => {
 
   document.getElementById('recipeArea').innerHTML = `${meal.strArea}`;
   document.getElementById('recipeCategory').innerHTML = `${meal.strCategory}`;
+	//var reloadWin = window.open("/"+"?id="+recipeID, "_self");
+	event.preventDefault();
+	window.location = "/"+"?id="+recipeID;
 }
+
+function loadRecipe() {
+	const urlParams = new URLSearchParams(window.location.search);
+	recipeID = urlParams.get('id');
+	if(recipeID){
+		var els = document.querySelectorAll("h2, h3");
+		for (var i=0; i < els.length; i++) {
+				els[i].setAttribute('style','visibility:visible');
+		}
+		fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i='+recipeID)
+			.then(res => res.json())
+			.then(res => {
+			createMeal(res.meals[0]);
+		});
+	}
+};
