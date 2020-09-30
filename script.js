@@ -18,7 +18,7 @@ randomRecipeBtn.addEventListener('click', (event) => {
 const getRecipeID = (meal, event) => {
 	recipeID=`${meal.idMeal}`;
 	event.preventDefault();
-	window.location = "/"+"?id="+recipeID;
+	window.location = window.location.href.split('?')[0]+"?id="+recipeID;
 }
 
 const createRecipe = (meal) => {
