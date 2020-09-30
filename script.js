@@ -11,12 +11,17 @@ randomRecipeBtn.addEventListener('click', (event) => {
 	fetch('https://www.themealdb.com/api/json/v1/1/random.php')
 		.then(res => res.json())
 		.then(res => {
-		createMeal(res.meals[0], event);
+		getRecipeID(res.meals[0], event);
 	});
 });
 
-const createMeal = (meal, event) => {
+const getRecipeID = (meal, event) => {
 	recipeID=`${meal.idMeal}`;
+	event.preventDefault();
+	window.location = "/"+"?id="+recipeID;
+}
+
+const createRecipe = (meal) => {
   document.getElementById('recipeName').innerHTML = `${meal.strMeal}`;
 
   foodImage.setAttribute("src", `${meal.strMealThumb}`);
@@ -52,9 +57,6 @@ const createMeal = (meal, event) => {
 
   document.getElementById('recipeArea').innerHTML = `${meal.strArea}`;
   document.getElementById('recipeCategory').innerHTML = `${meal.strCategory}`;
-	//var reloadWin = window.open("/"+"?id="+recipeID, "_self");
-	event.preventDefault();
-	window.location = "/"+"?id="+recipeID;
 }
 
 function loadRecipe() {
@@ -68,7 +70,7 @@ function loadRecipe() {
 		fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i='+recipeID)
 			.then(res => res.json())
 			.then(res => {
-			createMeal(res.meals[0]);
+			createRecipe(res.meals[0]);
 		});
 	}
 };
